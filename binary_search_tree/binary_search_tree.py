@@ -67,7 +67,34 @@ class BinarySearchTree:
     # Call the function `cb` on the value of each node
     # You may use a recursive or iterative approach
     def for_each(self, cb):
-        pass
+        cb(self.value)
+
+        # check left
+        if self.left != None:
+            self.left.for_each(cb)
+        
+        # check right
+        if self.right != None:
+            self.right.for_each(cb)
+        
+"""
+iterative solution
+
+def for_each(self, cb):
+    stack = Stack()
+    stack.push(self)
+
+    while stack.len() > 0:
+        # grab the node to work with
+        # which in stack is the last item, FIFO
+        current_node = stack.pop()
+        if current_node.right != None:
+            stack.push(current_node.right)
+        elif current_node.left != None:
+            stack.push(current_node.left)
+        
+        cb(current_node.value)
+"""
 
     # DAY 2 Project -----------------------
 
