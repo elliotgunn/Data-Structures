@@ -63,21 +63,21 @@ class LRUCache:
             node = self.storage[key]
             node.value = (key, value)
             # put at head of the DLL
-            self.order.move_to_front(node) 
+            self.order.move_to_end(node) 
             return 
 
         # if max capacity, drop oldest entry before adding
         elif self.current == self.limit:
             # delete oldest key value pair in {} first with the key
-            del self.storage[self.order.tail.value[0]]
+            del self.storage[self.order.head.value[0]]
             # remove tail from DLL 
-            self.order.remove_from_tail()
+            self.order.remove_from_head()
             self.current -= 1
         
         # add to the cache - add to dict and nodes/DLL
         # add to dict 
-        self.storage[key] = value
+        self.storage[key] = self.order.tail
         # add to nodes
-        self.order.add_to_head((key, value))
+        self.order.add_to_tail((key, value))
         # update counter
         self.current += 1
