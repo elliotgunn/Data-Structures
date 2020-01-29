@@ -6,7 +6,7 @@ class LRUCache:
     can hold, the current number of nodes it is holding, a doubly-
     linked list that holds the key-value entries in the correct
     order, as well as a storage dict that provides fast access
-    to every node stored in the cache.
+    to every node stored in the cache
     """
     def __init__(self, limit=10):
 
