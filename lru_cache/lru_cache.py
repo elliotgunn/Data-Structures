@@ -12,7 +12,6 @@ class LRUCache:
 
         # max number of nodes it can hold
         self.limit = limit
-
         # current number of nodes it holding
         self.current = 0
 
@@ -64,7 +63,7 @@ class LRUCache:
             node = self.storage[key]
             node.value = (key, value)
             # put at head of the DLL
-            self.order.move_to_front(node)
+            self.order.move_to_front(node) 
             return 
 
         # if max capacity, drop oldest entry before adding
