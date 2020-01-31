@@ -77,41 +77,64 @@ class BinarySearchTree:
         if self.right != None:
             self.right.for_each(cb)
         
-"""
-iterative solution
-
-def for_each(self, cb):
-    stack = Stack()
-    stack.push(self)
-
-    while stack.len() > 0:
-        # grab the node to work with
-        # which in stack is the last item, FIFO
-        current_node = stack.pop()
-        if current_node.right != None:
-            stack.push(current_node.right)
-        elif current_node.left != None:
-            stack.push(current_node.left)
-        
-        cb(current_node.value)
-"""
-
     # DAY 2 Project -----------------------
 
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self, node):
-        pass
+        # recurse left
+        if self.left:
+            self.left.in_order_print(self.left)
+        # then print after recursed all on the left
+        # print values on the right 
+        print(self.value)
+        # then recurse right
+        if self.right:
+            self.right.in_order_print(self.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self, node):
-        pass
+        # instantiate queue
+        # add root to queue  
+        queue = Queue()
+        queue.enqueue(node)
+
+        while queue.len() > 0:
+            # dequeue root and print
+            current = queue.dequeue()
+            print(current.value)
+
+            # check node for children and add to queue
+            if current.left:
+                queue.enqueue(current.left)
+            if current.right:
+                queue.enqueue(current.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self, node):
-        pass
+        # instantiate stack
+        # add root to stack 
+        stack = Stack()
+        stack.push(node)
+
+        # similar to above
+        while stack.len() > 0: 
+            current = stack.pop()
+            print(current.value)
+            if current.left:
+                stack.push(current.left)
+            if current.right:
+                stack.push(current.right)
+
+        
+
+
+
+
+
+
 
     # STRETCH Goals -------------------------
     # Note: Research may be required
